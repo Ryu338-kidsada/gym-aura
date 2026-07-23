@@ -13,7 +13,7 @@ module.exports = async function handler(req, res) {
         'SELECT * FROM workouts WHERE user_id = $1 ORDER BY workout_date DESC, id DESC',
         [payload.userId]
       );
-      return res.status(200).json({ workouts: rows });
+      return res.status(200).json(rows); // ส่งเป็น array ตรงๆ ไม่ wrap ด้วย object
     }
 
     if (req.method === 'POST') {

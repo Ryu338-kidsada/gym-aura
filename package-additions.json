@@ -1,0 +1,9 @@
+{
+  "_คำอธิบาย": "เปิด package.json (root) ของโปรเจกต์ แล้วเพิ่ม 3 บรรทัดนี้เข้าไปใน dependencies (ห้ามทับของเดิม แค่เพิ่มเข้าไป)",
+  "dependencies_ที่ต้องเพิ่ม": {
+    "pg": "^8.13.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "วิธีติดตั้งเร็วกว่า": "รันคำสั่ง: npm install pg bcryptjs jsonwebtoken --save (ที่ root โปรเจกต์ ไม่ใช่ในโฟลเดอร์ server/)"
+}
