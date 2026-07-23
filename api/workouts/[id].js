@@ -19,14 +19,14 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === 'PUT') {
-      const { title, category, duration, calories, workoutDate, notes } = req.body || {};
+      const { title, category, duration, calories, workout_date, notes } = req.body || {};
       const { rows } = await pool.query(
         `UPDATE workouts
          SET title = $1, category = $2, duration = $3, calories = $4,
              workout_date = $5, notes = $6, updated_at = NOW()
          WHERE id = $7 AND user_id = $8
          RETURNING *`,
-        [title, category, duration, calories, workoutDate, notes, id, payload.userId]
+        [title, category, duration, calories, workout_date, notes, id, payload.userId]
       );
       if (!rows[0]) return res.status(404).json({ error: 'ไม่พบรายการ' });
       return res.status(200).json({ workout: rows[0] });

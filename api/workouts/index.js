@@ -17,14 +17,14 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-      const { title, category, duration, calories, workoutDate, notes } = req.body || {};
-      if (!title || !category || !duration || !workoutDate) {
+      const { title, category, duration, calories, workout_date, notes } = req.body || {};
+      if (!title || !category || !duration || !workout_date) {
         return res.status(400).json({ error: 'กรุณากรอกข้อมูลให้ครบ' });
       }
       const { rows } = await pool.query(
         `INSERT INTO workouts (user_id, title, category, duration, calories, workout_date, notes)
          VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-        [payload.userId, title, category, duration, calories || 0, workoutDate, notes || null]
+        [payload.userId, title, category, duration, calories || 0, workout_date, notes || null]
       );
       return res.status(201).json({ workout: rows[0] });
     }
